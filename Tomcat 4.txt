@@ -1,0 +1,71 @@
+after instance creation, in ec2
+
+root dir:
+yum install java-17
+
+sudo su -
+
+cd /opt
+
+wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.17/bin/apache-tomcat-10.1.17.tar.gz.asc
+
+tar -zvxf apache-tomcat-10.1.17.tar.gz
+
+mv apache-tomcat-10.1.17 tomcat
+
+
+cd tomcat
+
+
+vi ~/.bash_profile
+
+M2_HOME=/opt/maven              
+M2=/opt/maven/bin
+PATH=$PATH:$M2_HOME:$M2
+
+insert...>paste esc :wq<-'
+
+sudo find / -name context.xml
+
+
+comment both valves there in above last 2 lines
+
+shutdown.sh
+
+startup.sh
+
+cd conf :from tomcat
+
+
+<role rolename="manager-gui"/>
+          <role rolename="manager-script"/>
+          <role rolename="manager-jmx"/>
+          <role rolename="manager-status"/>
+          <user username="admin" password="admin" roles="manager-gui,manager-script,manager-jmx,manager-
+status"/>
+          <user username="admin" password="admin" roles=S"manager-script"/>
+          <user username="admin" password="admin" roles="manager-gui"/>
+
+
+
+jenkins now
+-------------
+
+
+sudo su - 
+
+sudo yum update
+
+sudo yum install java-17
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+sudo yum install jenkins
+
+sudo systemctl start jenkins
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
