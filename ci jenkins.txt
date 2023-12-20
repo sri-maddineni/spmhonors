@@ -1,0 +1,80 @@
+JENKINS:-
+
+1.sudo yum update
+
+2.sudo yum install java-11-amazon-corretto
+
+3.sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo   (sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo)   
+
+4.sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key   (sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key)
+
+5.sudo yum install jenkins
+
+6.sudo systemctl start jenkins
+
+7.sudo cat /var/lib/jenkins/secrets/initialAdminPassword   (Copy the initial password)
+
+8.Ec2 -> instances -> instance id -> security tab -> security groups -> edit inbound rule -> add rule -> port 8080 and select 0.0.0.0/0 -> click save rules
+
+9.Public IP:8080 search in the address bar of chrome
+
+10.Give the copied initial password and select " install suggested pulgins "
+
+
+GITHUB:- ec2 only
+
+1.sudo yum install git -y
+
+2.Plugins - Git integration
+
+3.Tools 
+    Git installation-
+      Name - Git
+
+
+
+MAVEN:-
+
+1.cd /opt
+
+2.sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz -O apache-maven-3.9.6-bin.tar.gz
+
+https://dlcdn.apache.org/maven/maven-3/3.9.6/source/apache-maven-3.9.6-src.tar.gz
+
+3.sudo tar -zxvf apache-maven-3.9.6-bin.tar.gz (extract)
+
+4.sudo mv apache-maven-3.9.6 maven
+
+5.sudo su -
+
+6.cd ~
+
+7.vi ~/.bash_profile
+
+
+8. M2_HOME=/opt/maven              
+   M2=/opt/maven/bin
+   PATH=$PATH:$M2_HOME:$M2
+
+
+9. source ~/.bash_profile
+
+10. mvn -v
+
+11.Plugins - maven integration plugin install
+
+12. In tools:-
+       JDK installations-
+           Name - java-11
+           JAVA_HOME - /usr/lib/jvm/java-11-amazon-corretto.x86_64
+
+
+       Maven installations-
+           Name - maven-3.9.6
+           MAVEN_HOME - /opt/maven
+
+
+
+For git repo use this dummy link -
+1. https://github.com/GeorgeBaidooJr9/hello-world
+2. https://github.com/yankils/hello-world
